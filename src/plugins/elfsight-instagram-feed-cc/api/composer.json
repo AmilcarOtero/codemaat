@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "classmap": [
+            "vendor/elfsight",
+            "api-endpoint.php",
+            "api-format.php",
+            "api-ig-user.php"
+        ]
+    }
+}

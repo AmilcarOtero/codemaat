@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 8081:3306
+    environment:
+      MYSQL_USER: wordpress
+      MYSQL_ROOT_PASSWORD: codemaat
+      MYSQL_DATABASE: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:latest
+    volumes:
+      - ./src/themes:/var/www/html/wp-content/themes
+      - ./src/plugins:/var/www/html/wp-content/plugins
+      - ./src/uploads:/var/www/html/wp-content/uploads
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    
